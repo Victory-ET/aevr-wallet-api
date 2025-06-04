@@ -9,7 +9,11 @@ const userTypeDefs = `#graphql
     phone: String
     phoneVerified: Boolean
     roles: [Role]
+    country: String
+    currency: String
     wallets(pagination: Pagination, filters: UserWalletFilter): UserWalletsData
+    createdAt: String
+    updatedAt: String
   }
 
   type UserData {
@@ -46,6 +50,8 @@ const userTypeDefs = `#graphql
     lastName: String
     email: String
     phone: String
+    country: String
+    currency: String
   }
 
   type RefreshPayload {
