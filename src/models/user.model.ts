@@ -20,6 +20,8 @@ const registerUserSchema = object({
   email: string().email().required(),
   password: string().min(6).required(),
   phone: string().min(10).optional(),
+  country: string().optional(),
+  currency: string().optional(),
 });
 
 const loginUserSchema = object({
@@ -32,6 +34,8 @@ const editUserSchema = object({
   lastName: string().trim().min(3).required(),
   phone: string().min(10).optional(),
   picture: string().optional(),
+  country: string().optional(),
+  currency: string().optional(),
   roles: array().of(string()).optional(),
 });
 
@@ -69,6 +73,8 @@ const userSchema = new mongoose.Schema<UserDocument, UserModel>(
       type: Boolean,
       default: false,
     },
+    country: String,
+    currency: String,
     roles: [
       {
         type: Schema.Types.ObjectId,

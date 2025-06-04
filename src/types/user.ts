@@ -32,6 +32,8 @@ export interface User {
   emailVerified?: boolean;
   phone?: string;
   phoneVerified?: boolean;
+  country?: string;
+  currency?: string;
   roles?: Types.ObjectId[];
   createdAt?: Date;
   updatedAt?: Date;
