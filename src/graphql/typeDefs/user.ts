@@ -33,6 +33,7 @@ const userTypeDefs = `#graphql
     email: String!
     phone: String
     password: String!
+    country: String
   }
 
   input LoginInput {

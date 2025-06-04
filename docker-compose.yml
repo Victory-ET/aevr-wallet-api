@@ -15,7 +15,7 @@ services:
       - mongodb
     environment:
       - PORT=${PORT}
-      - MONGO_URI=mongodb://mongodb:27017/aevr-wallet
+      - MONGO_URI=${MONGO_URI}
       - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
       - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
       - VAPID_PUBLIC_KEY=${VAPID_PUBLIC_KEY}

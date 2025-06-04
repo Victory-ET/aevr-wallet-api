@@ -54,6 +54,11 @@ await server.start();
 // our loggerMiddleware.
 app.use(loggerMiddleware);
 
+// health check (placed before authentication middleware)
+app.get("/health", (req, res) => {
+  res.send("OK");
+});
+
 // validate API Key middleware
 app.use(validateApiKey as RequestHandler);
 
@@ -102,10 +107,7 @@ app.use("/graphql", apolloMiddleware as RequestHandler);
 // // API routes
 // app.use('/api/v1', routes);
 
-// health check
-app.get("/health", (req, res) => {
-  res.send("OK");
-});
+// The health check route has been moved above the authentication middleware
 
 // Handle 404 errors for any other routes
 app.use(notFoundMiddleware);
