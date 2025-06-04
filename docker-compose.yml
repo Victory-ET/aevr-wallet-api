@@ -4,10 +4,18 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "9872:9872"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9872"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - mongodb
     environment:
       - PORT=${PORT}
-      - MONGO_URI=${MONGO_URI}
+      - MONGO_URI=mongodb://mongodb:27017/aevr-wallet
       - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
       - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
       - VAPID_PUBLIC_KEY=${VAPID_PUBLIC_KEY}
@@ -29,3 +37,19 @@ services:
       - DEFAULT_MAIL_PROVIDER=${DEFAULT_MAIL_PROVIDER}
     env_file:
       - .env
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1.2
+# No need for BuildKit syntax directive anymore
 
 FROM node:lts as builder
 
@@ -8,20 +8,29 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package*.json ./
 
-# Mount the secret, copy it to project root
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cp /etc/secrets/.env .env && npm ci
+# Install dependencies without using secrets
+RUN npm ci
 
+# Copy source code
 COPY . .
 
-# If needed again during compile step
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cp /etc/secrets/.env .env && npm run compile
-
-# RUN npm run compile
+# Compile TypeScript
+RUN npm run compile
 
 FROM node:lts-slim
 
 ENV NODE_ENV production
-USER node
+
+# Switch to root to install Python and build tools
+# Install necessary build dependencies including curl for healthcheck
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    curl \
+    tini \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -29,9 +38,17 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package*.json ./
 
-RUN npm ci --production
+# Install dependencies with npm
+RUN npm ci --omit=dev
+
+# Switch back to node user for security
+USER node
 
 COPY --from=builder /usr/src/app/dist ./dist
 
-EXPOSE 8080
+# Update exposed port to match .env and docker-compose.yml
+EXPOSE 9872
+
+# Use Tini as entrypoint for better signal handling
+ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD [ "node", "dist/index.js" ]

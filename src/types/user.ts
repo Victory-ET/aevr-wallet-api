@@ -35,6 +35,7 @@ export interface User {
   roles?: Types.ObjectId[];
   createdAt?: Date;
   updatedAt?: Date;
+  country?: string;
 }
 
 export type UpsertInput = {
