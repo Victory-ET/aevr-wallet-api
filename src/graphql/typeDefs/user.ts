@@ -8,6 +8,12 @@ const userTypeDefs = `#graphql
     emailVerified: Boolean
     phone: String
     phoneVerified: Boolean
+    hasConnectedPayAccount: Boolean
+    businessId: String
+    appId: String
+    accountId: String
+    transactionPin: String
+    token: String
     roles: [Role]
     wallets(pagination: Pagination, filters: UserWalletFilter): UserWalletsData
   }
@@ -47,6 +53,12 @@ const userTypeDefs = `#graphql
     lastName: String
     email: String
     phone: String
+    hasConnectedPayAccount: Boolean
+    businessId: String
+    appId: String
+    accountId: String
+    transactionPin: String
+    token: String
   }
 
   type RefreshPayload {

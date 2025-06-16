@@ -69,6 +69,28 @@ const userSchema = new mongoose.Schema<UserDocument, UserModel>(
       type: Boolean,
       default: false,
     },
+    hasConnectedPayAccount: {
+      type: Boolean,
+      default: false,
+    },
+    accountId: {
+      type: String,
+      default: "",
+    },
+    businessId: {
+      type: String,
+    },
+    appId: {
+      type: String,
+    },
+    token: {
+      type: String,
+      required: false,
+    },
+    transactionPin: {
+      type: String,
+      required: false,
+    },
     roles: [
       {
         type: Schema.Types.ObjectId,

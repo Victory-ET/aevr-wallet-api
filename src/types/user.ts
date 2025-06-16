@@ -36,6 +36,12 @@ export interface User {
   createdAt?: Date;
   updatedAt?: Date;
   country?: string;
+  hasConnectedPayAccount?: boolean;
+  accountId?: string;
+  businessId?: string;
+  appId?: string;
+  token?: string;
+  transactionPin?: string;
 }
 
 export type UpsertInput = {
