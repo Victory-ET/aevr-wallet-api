@@ -25,6 +25,7 @@ router.post('/seed', async (req, res) => {
           "https://example.com/apartment1-3.jpg"
         ],
         category: "Residential",
+        description: "Luxury apartment complex with a variety of amenities and location in the heart of downtown.",
         tags: ["luxury", "downtown", "apartment", "high-yield"]
       },
       {
@@ -39,6 +40,7 @@ router.post('/seed', async (req, res) => {
           "https://example.com/hotel1-2.jpg"
         ],
         category: "Commercial",
+        description: "Luxury apartment complex with a variety of amenities and location in the heart of downtown.",
         tags: ["hotel", "event-center", "hospitality", "stable"]
       },
       {
@@ -54,6 +56,7 @@ router.post('/seed', async (req, res) => {
           "https://example.com/office1-3.jpg",
           "https://example.com/office1-4.jpg"
         ],
+        description: "Luxury apartment complex with a variety of amenities and location in the heart of downtown.",
         category: "Commercial",
         tags: ["office", "modern", "business", "long-term"]
       },
@@ -69,6 +72,7 @@ router.post('/seed', async (req, res) => {
           "https://example.com/villa1-2.jpg"
         ],
         category: "Resort",
+        description: "Luxury apartment complex with a variety of amenities and location in the heart of downtown.",
         tags: ["beachfront", "villa", "resort", "premium", "vacation"]
       },
       {
@@ -82,6 +86,7 @@ router.post('/seed', async (req, res) => {
           "https://example.com/mall1-1.jpg"
         ],
         category: "Commercial",
+        description: "Luxury apartment complex with a variety of amenities and location in the heart of downtown.",
         tags: ["shopping", "retail", "mall", "diverse-income"]
       },
       {
@@ -97,6 +102,7 @@ router.post('/seed', async (req, res) => {
           "https://example.com/student1-3.jpg"
         ],
         category: "Residential",
+        description: "Luxury apartment complex with a variety of amenities and location in the heart of downtown.",
         tags: ["student", "housing", "education", "consistent"]
       }
     ];

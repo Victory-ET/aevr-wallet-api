@@ -10,6 +10,7 @@ export const stakingTypeDefs = `#graphql
     minStake: String!
     image: String!
     gallery: [String!]!
+    description: String!
     category: String!
     tags: [String!]!
     isActive: Boolean!

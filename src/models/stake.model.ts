@@ -31,6 +31,10 @@ const stakingSchema = new Schema({
   gallery: [{
     type: String
   }],
+  description: {
+    type: String,
+    required: true
+  },
   category: {
     type: String,
     required: true
