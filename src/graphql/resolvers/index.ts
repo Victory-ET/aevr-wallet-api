@@ -7,6 +7,7 @@ import roleResolvers from "./role.resolvers.js";
 import { transferResolvers } from "./transfer.resolvers.js";
 import userResolvers from "./user.resolvers.js";
 import { userWalletResolvers } from "./userWallet.resolvers.js";
+import { stakingResolvers } from "./stakingResolver.js";
 
 export interface PaginationInput {
   page?: number;
@@ -43,6 +44,7 @@ const resolvers = {
     ...userWalletResolvers.Query,
     ...transferResolvers.Query,
     ...ratesResolvers.Query,
+    ...stakingResolvers.Query,
   },
   Mutation: {
     ...userResolvers.Mutation,

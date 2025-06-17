@@ -49,4 +49,4 @@ const stakingSchema = new Schema({
 // Add text index for search functionality
 stakingSchema.index({ title: 'text', category: 'text', tags: 'text' });
 
-module.exports = model('Staking', stakingSchema);
+export default model('Staking', stakingSchema)

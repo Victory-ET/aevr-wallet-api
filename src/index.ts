@@ -23,6 +23,8 @@ import {
   notFoundMiddleware,
 } from "./middlewares/error.middleware.js";
 import { ApiError } from "./services/error.services.js";
+// Import your existing typeDefs and resolvers, then add the staking ones
+import stakingRoutes from "./routes/staking.js";
 interface MyContext {
   token?: string;
   user?: any;
@@ -106,6 +108,8 @@ app.use("/graphql", apolloMiddleware as RequestHandler);
 
 // // API routes
 // app.use('/api/v1', routes);
+// REST Routes
+app.use('/api/staking', stakingRoutes);
 
 // The health check route has been moved above the authentication middleware
 

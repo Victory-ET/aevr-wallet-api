@@ -7,6 +7,7 @@ import roleTypeDefs from "./role.js";
 import { transferTypeDefs } from "./transfer.js";
 import userTypeDefs from "./user.js";
 import userWalletTypeDefs from "./userWallet.js";
+import { stakingTypeDefs } from "./stakingTypeDefs.js";
 
 const globalTypeDefs = `#graphql
   scalar JSON
@@ -48,6 +49,7 @@ const typeDefs = `
   ${userWalletTypeDefs}
   ${transferTypeDefs}
   ${ratesTypeDefs}
+  ${stakingTypeDefs}
 `;
 
 export default typeDefs;
