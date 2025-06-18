@@ -5,6 +5,7 @@ import { genSalt, hash, compare } from "bcrypt";
 import { array, object, string } from "yup";
 import { assignRoleToUser } from "../services/user.services.js";
 import Role from "./role.model.js";
+import UserStake from "./userStake.model.js";
 
 import { initOTPGeneration } from "../services/otp.services.js";
 import {
@@ -98,6 +99,14 @@ const userSchema = new mongoose.Schema<UserDocument, UserModel>(
         default: [],
       },
     ],
+    currentStakes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "UserStake",
+        default: [],
+        required: false,
+      }
+    ]
   },
   {
     timestamps: true,

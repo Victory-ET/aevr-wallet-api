@@ -42,6 +42,23 @@ export interface User {
   appId?: string;
   token?: string;
   transactionPin?: string;
+  currentStakes: {
+    _id: string;
+    id: number;
+    title: string;
+    apr: string;
+    sold: number;
+    minStake: string;
+    image: string;
+    gallery: string[];
+    description: string;
+    category: string;
+    tags: string[];
+    isActive: boolean;
+    createdAt: string;
+    aprEarned: string;
+    amountStaked: string;
+  }[];
 }
 
 export type UpsertInput = {

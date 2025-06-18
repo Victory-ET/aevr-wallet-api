@@ -1,4 +1,22 @@
 const userTypeDefs = `#graphql
+  type UserStake {
+    _id: ID!
+    id: Int!
+    title: String!
+    apr: String!
+    sold: Int!
+    minStake: String!
+    image: String!
+    gallery: [String!]!
+    description: String!
+    category: String!
+    tags: [String!]!
+    aprEarned: String
+    amountStaked: String
+    isActive: Boolean!
+    createdAt: String!
+  }
+
   type User {
     id: ID
     firstName: String
@@ -15,6 +33,7 @@ const userTypeDefs = `#graphql
     transactionPin: String
     token: String
     roles: [Role]
+    currentStakes: [UserStake]
     wallets(pagination: Pagination, filters: UserWalletFilter): UserWalletsData
   }
 
@@ -47,6 +66,24 @@ const userTypeDefs = `#graphql
     password: String!
   }
 
+  input UserStakeInput {
+    _id: ID!
+    id: Int!
+    title: String!
+    apr: String!
+    sold: Int!
+    minStake: String!
+    image: String!
+    gallery: [String!]!
+    description: String!
+    category: String!
+    tags: [String!]!
+    aprEarned: String!
+    amountStaked: String!
+    isActive: Boolean!
+    createdAt: String!
+  }
+
   input UpdateUserInput {
     picture: String
     firstName: String
@@ -59,6 +96,7 @@ const userTypeDefs = `#graphql
     accountId: String
     transactionPin: String
     token: String
+    currentStakes: [UserStakeInput]
   }
 
   type RefreshPayload {

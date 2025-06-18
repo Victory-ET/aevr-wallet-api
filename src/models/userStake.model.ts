@@ -1,7 +1,6 @@
 import { model, Schema } from "mongoose";
 
-
-const stakingSchema = new Schema({
+const userStakeSchema = new Schema({
   id: {
     type: Number,
     required: true,
@@ -58,7 +57,9 @@ const stakingSchema = new Schema({
   timestamps: true
 });
 
-// Add text index for search functionality
-stakingSchema.index({ title: 'text', category: 'text', tags: 'text' });
 
-export default model('Staking', stakingSchema)
+// Index for efficient querying
+userStakeSchema.index({ userId: 1, stakingPropertyId: 1 });
+
+export default model('UserStake', userStakeSchema);
+

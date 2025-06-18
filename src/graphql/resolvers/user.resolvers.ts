@@ -20,6 +20,7 @@ import {
 import roleModel from "../../models/role.model.js";
 import { logger } from "@untools/logger";
 import { WalletService } from "../../services/userWallet.services.js";
+import UserStake from "../../models/userStake.model.js";
 
 const { sign } = pkg;
 config();
@@ -241,11 +242,21 @@ const userResolvers = {
             new: true,
             runValidators: true,
           }
-        );
+        ).populate('currentStakes');
 
         if (!updatedUser) {
           throw new NotFoundError("User not found");
         }
+
+        // Debug logging to identify the issue
+        console.log('Current stakes before filtering:', updatedUser.currentStakes);
+        
+        // Filter out null/undefined populated documents
+        if (updatedUser.currentStakes) {
+          updatedUser.currentStakes = updatedUser.currentStakes.filter(stake => stake !== null && stake !== undefined);
+        }
+        
+        console.log('Current stakes after filtering:', updatedUser.currentStakes);
 
         return updatedUser;
       } catch (error) {
